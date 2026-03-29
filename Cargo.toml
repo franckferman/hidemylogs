@@ -1,0 +1,33 @@
+[package]
+name = "hidemylogs"
+version = "1.0.0"
+edition = "2021"
+authors = ["Franck FERMAN <franckferman@users.noreply.github.com>"]
+description = "Surgical *nix log cleaner - selectively erase access records from lastlog, wtmp, btmp, and utmp while preserving file metadata"
+license = "AGPL-3.0"
+repository = "https://github.com/franckferman/hidemylogs"
+keywords = ["security", "forensics", "red-team", "post-exploitation", "logs"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+chrono = "0.4"
+colored = "2"
+filetime = "0.2"
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+panic = "abort"
+
+# Polymorphic build profile: max obfuscation at compiler level
+[profile.poly]
+inherits = "release"
+opt-level = 3              # O3 instead of Oz: different inlining/vectorization decisions
+lto = "fat"                # full cross-crate LTO: more aggressive reordering
+codegen-units = 1          # single codegen unit: deterministic but different layout from release
+strip = "symbols"          # strip symbols but keep .rodata (our randomized strings)
+panic = "abort"
+overflow-checks = false    # remove overflow checks: changes CFG
+debug-assertions = false

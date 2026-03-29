@@ -1,0 +1,18 @@
+# Linguist
+docs/** linguist-documentation=true
+scripts/** linguist-vendored=true
+samples/** linguist-documentation=true
+samples/*.lastlog binary
+samples/*.wtmp binary
+samples/*.utmp binary
+samples/*.btmp binary
+
+# LF normalization
+*.rs text eol=lf diff=rust
+*.toml text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+LICENSE text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
