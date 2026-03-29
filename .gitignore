@@ -1,0 +1,24 @@
+# Rust
+/target
+Cargo.lock
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Signing
+*.pfx
+*.cer
+*.p12
+*.pem
+*.key
+.poly_backup/
